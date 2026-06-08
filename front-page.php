@@ -22,9 +22,17 @@ $is_new_days = (int) apply_filters( 'becoming_bipedal_new_post_days', 14 );
 <main id="primary" class="site-main site-main--front">
 	<?php if ( 1 === $paged ) : ?>
 		<section class="front-hero">
-			<div id="lottie-fv" class="front-hero__lottie" 
-				data-json-path="<?php echo esc_url( get_template_directory_uri() . '/assets/js/BB_FV.json' ); ?>"
-				data-assets-path="<?php echo esc_url( get_template_directory_uri() . '/assets/' ); ?>"></div>
+			<div class="front-hero__wrapper">
+				<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/img_0.jpg' ); ?>" 
+				     class="front-hero__bg-img" 
+				     alt="First View Background" 
+				     fetchpriority="high" 
+				     loading="eager" 
+				     decoding="async">
+				<div id="lottie-fv" class="front-hero__lottie" 
+					data-json-path="<?php echo esc_url( get_template_directory_uri() . '/assets/js/BB_FV.json' ); ?>"
+					data-assets-path="<?php echo esc_url( get_template_directory_uri() . '/assets/' ); ?>"></div>
+			</div>
 		</section>
 	<?php endif; ?>
 

@@ -25,7 +25,7 @@ get_header();
 
 			<?php if ( has_post_thumbnail() ) : ?>
 				<figure class="article-single__featured">
-					<?php the_post_thumbnail( 'large' ); ?>
+					<?php the_post_thumbnail( 'large', array( 'loading' => 'eager', 'fetchpriority' => 'high' ) ); ?>
 				</figure>
 			<?php endif; ?>
 

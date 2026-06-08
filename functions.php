@@ -219,3 +219,39 @@ function becoming_bipedal_theme_posts_pagination() {
 		)
 	);
 }
+
+/**
+ * Speed Optimization: Remove unnecessary scripts/styles and headers.
+ */
+function becoming_bipedal_theme_optimize_head() {
+	// Disable default emojis script and styles
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+	// Remove RSD, WLW Manifest, and Generator links
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'shortlink_header_metadata', 10 );
+}
+add_action( 'init', 'becoming_bipedal_theme_optimize_head' );
+
+function becoming_bipedal_theme_optimize_scripts() {
+	// Dequeue WP Embed script
+	wp_deregister_script( 'wp-embed' );
+
+	// Dequeue jQuery Migrate (keep main jQuery just in case plugins need it, but remove migrate)
+	if ( ! is_admin() ) {
+		global $wp_scripts;
+		if ( isset( $wp_scripts->registered['jquery'] ) ) {
+			$jquery_dependencies = $wp_scripts->registered['jquery']->deps;
+			$wp_scripts->registered['jquery']->deps = array_diff( $jquery_dependencies, array( 'jquery-migrate' ) );
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'becoming_bipedal_theme_optimize_scripts', 99 );
