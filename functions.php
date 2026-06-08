@@ -104,7 +104,7 @@ function becoming_bipedal_theme_scripts() {
 	if ( is_front_page() ) {
 		wp_enqueue_script(
 			'lottie-player',
-			'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js',
+			'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js',
 			array(),
 			'5.12.2',
 			true

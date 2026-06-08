@@ -2,8 +2,6 @@
    Becoming Bipedal — STUDIO-like rebuild v1
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300&display=swap');
-
 :root {
 	--color-lavender: rgb(219, 198, 244);
 	--color-feed: rgb(234, 232, 230);
