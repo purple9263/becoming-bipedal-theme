@@ -99,10 +99,20 @@ ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を�
 									);
 
 									$en_names_map = array(
+										// Slugs mapping
 										'build-in-public'  => 'Build in Public',
 										'ai-web-creation'  => 'AI Web Creation',
 										'work'             => 'Work',
 										'side-notes'       => 'Side Notes',
+										
+										// Japanese names mapping
+										'学習記録'         => 'Build in Public',
+										'AIサイト制作'     => 'AI Web Creation',
+										'働き方'           => 'Work',
+										'雑記'             => 'Side Notes',
+										'AIツール活用'     => 'Utilization of AI tools',
+										'AI副業'           => 'AI side job',
+										'在宅ワーク'       => 'Work from home',
 									);
 
 									if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
@@ -114,7 +124,9 @@ ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を�
 											$url     = get_category_link( $category->term_id );
 											$ja_name = $category->name;
 
-											if ( isset( $en_names_map[ $category->slug ] ) ) {
+											if ( isset( $en_names_map[ $category->name ] ) ) {
+												$en_name = $en_names_map[ $category->name ];
+											} elseif ( isset( $en_names_map[ $category->slug ] ) ) {
 												$en_name = $en_names_map[ $category->slug ];
 											} elseif ( ! empty( $category->description ) && mb_strlen( $category->description ) < 30 ) {
 												$en_name = $category->description;
