@@ -146,7 +146,8 @@ h1, h2, h3, h4, h5, h6, p { margin-top: 0; }
 .magazine-item__thumb--empty { display: block; background: linear-gradient(135deg, #f7f2fb 0%, #cbb5de 100%); }
 .magazine-feed__pagination { padding: 36px 0 48px; }
 .magazine-feed__pagination ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 8px; }
-.magazine-feed__pagination .page-numbers { display: inline-flex; min-width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid var(--color-text); border-radius: var(--pill-radius); background: #fff; font-family: var(--font-condensed); }
+.magazine-feed__pagination .page-numbers { display: inline-flex; min-width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid var(--color-text); border-radius: var(--pill-radius); background: #fff; font-family: var(--font-condensed); text-decoration: none; color: var(--color-text); }
+.magazine-feed__pagination .page-numbers:hover:not(.current) { opacity: 0.72; }
 .magazine-feed__pagination .current { background: var(--color-text); color: #fff; }
 
 /* Pagination (Global/Archive) */

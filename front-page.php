@@ -77,6 +77,23 @@ $is_new_days = (int) apply_filters( 'becoming_bipedal_new_post_days', 14 );
 						</article>
 					<?php endwhile; ?>
 				</div>
+				<?php if ( $list_query->max_num_pages > 1 ) : ?>
+					<div class="magazine-feed__pagination">
+						<?php
+						echo paginate_links(
+							array(
+								'base'      => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+								'format'    => '?paged=%#%',
+								'current'   => max( 1, $paged ),
+								'total'     => $list_query->max_num_pages,
+								'prev_text' => esc_html__( '&larr; Previous', 'becoming-bipedal-theme' ),
+								'next_text' => esc_html__( 'Next &rarr;', 'becoming-bipedal-theme' ),
+								'type'      => 'list',
+							)
+						);
+						?>
+					</div>
+				<?php endif; ?>
 			<?php else : ?>
 				<p class="no-results"><?php esc_html_e( 'No posts found.', 'becoming-bipedal-theme' ); ?></p>
 			<?php endif; ?>
