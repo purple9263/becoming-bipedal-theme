@@ -52,7 +52,7 @@ ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を�
 						<p class="site-branding__title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><span class="site-branding__title-strong">Becoming</span><span class="site-branding__title-light">Bipedal</span></a></p>
 					<?php endif; ?>
 				<?php endif; ?>
-				<p class="site-branding__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : 'むらさき丸は二足歩行で歩きたい' ); ?></p>
+				<p class="site-branding__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : 'AIとWeb制作で、在宅で働く力を作る実践メディア。' ); ?></p>
 			</div>
 
 			<div class="site-header__right">

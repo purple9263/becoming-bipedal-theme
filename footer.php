@@ -77,7 +77,7 @@ $privacy_url = get_privacy_policy_url();
 		<div class="site-footer__brand">
 			<div class="site-container site-footer__brand-inner">
 				<p class="site-footer__site-name"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span>Becoming</span><span>Bipedal</span></a></p>
-				<p class="site-footer__tagline">むらさき丸は二足歩行で歩きたい</p>
+				<p class="site-footer__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ? get_bloginfo( 'description' ) : 'AIとWeb制作で、在宅で働く力を作る実践メディア。' ); ?></p>
 
 				<?php if ( ! empty( $social_links ) ) : ?>
 					<ul class="site-footer__social">
