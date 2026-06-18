@@ -21,7 +21,8 @@ if ( ! class_exists( 'Becoming_Bipedal_Nav_Walker' ) ) {
 	}
 }
 
-$header_announcement = apply_filters( 'becoming_bipedal_header_announcement', '30代。ライフステージどころかライフスタイル自体変わっちゃいそうなイベントに直面。何個も。どうする！？出来ることやるしかないよね。一歩一歩ね、歩いていきます。' );
+$header_announcement = apply_filters( 'becoming_bipedal_header_announcement', 'AIとWeb制作を使って、在宅で働く力を作っている実践記録ブログです。
+ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を、初心者目線でリアルに書いています。' );
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -59,8 +60,8 @@ $header_announcement = apply_filters( 'becoming_bipedal_header_announcement', '3
 					
 					<div class="site-header__ticker-wrap" style="height: 54px; line-height: 54px; background-color: var(--color-lavender); border-bottom: 1px solid var(--color-text); overflow: hidden; width: 100%; box-sizing: border-box;">
 						<div class="site-header__ticker-track" style="display: inline-block; white-space: nowrap; animation: ticker-animation 35s linear infinite; vertical-align: middle;">
-							<span style="font-size: 14px; color: var(--color-text); padding-right: 50px; display: inline-block;">30代。ライフステージどころかライフスタイル自体変わっちゃいそうなイベントに直面。何個も。どうする！？出来ることやるしかないよね。一歩一歩ね、歩いていきます。</span>
-							<span style="font-size: 14px; color: var(--color-text); padding-right: 50px; display: inline-block;">30代。ライフステージどころかライフスタイル自体変わっちゃいそうなイベントに直面。何個も。どうする！？出来ることやるしかないよね。一歩一歩ね、歩いていきます。</span>
+							<span style="font-size: 14px; color: var(--color-text); padding-right: 50px; display: inline-block;"><?php echo esc_html( $header_announcement ); ?></span>
+							<span style="font-size: 14px; color: var(--color-text); padding-right: 50px; display: inline-block;"><?php echo esc_html( $header_announcement ); ?></span>
 						</div>
 					</div>
 
