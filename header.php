@@ -75,78 +75,64 @@ ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を�
 						</button>
 
 						<nav id="primary-navigation" class="primary-navigation" aria-label="<?php esc_attr_e( 'Primary', 'becoming-bipedal-theme' ); ?>">
-							<?php
-							if ( has_nav_menu( 'primary' ) ) {
-								wp_nav_menu(
+							<ul class="primary-navigation__list">
+								<?php
+								$categories = get_categories(
 									array(
-										'theme_location' => 'primary',
-										'container'      => false,
-										'menu_class'     => 'primary-navigation__list',
-										'fallback_cb'    => false,
-										'walker'         => new Becoming_Bipedal_Nav_Walker(),
+										'orderby'    => 'name',
+										'order'      => 'ASC',
+										'hide_empty' => false,
 									)
 								);
-							} else {
-								?>
-								<ul class="primary-navigation__list">
-									<?php
-									$categories = get_categories(
-										array(
-											'orderby'    => 'name',
-											'order'      => 'ASC',
-											'hide_empty' => true,
-										)
-									);
 
-									$en_names_map = array(
-										// Slugs mapping
-										'build-in-public'  => 'Build in Public',
-										'ai-web-creation'  => 'AI Web Creation',
-										'work'             => 'Work',
-										'side-notes'       => 'Side Notes',
-										
-										// Japanese names mapping
-										'学習記録'         => 'Build in Public',
-										'AIサイト制作'     => 'AI Web Creation',
-										'働き方'           => 'Work',
-										'雑記'             => 'Side Notes',
-										'AIツール活用'     => 'Utilization of AI tools',
-										'AI副業'           => 'AI side job',
-										'在宅ワーク'       => 'Work from home',
-									);
+								$en_names_map = array(
+									// Slugs mapping
+									'build-in-public'  => 'Build in Public',
+									'ai-web-creation'  => 'AI Web Creation',
+									'work'             => 'Work',
+									'side-notes'       => 'Side Notes',
+									
+									// Japanese names mapping
+									'学習記録'         => 'Build in Public',
+									'実践記録'         => 'Build in Public',
+									'AIサイト制作'     => 'AI Web Creation',
+									'AI制作'           => 'AI Web Creation',
+									'働き方'           => 'Work',
+									'雑記'             => 'Side Notes',
+									'AIツール活用'     => 'Utilization of AI tools',
+									'AI副業'           => 'AI side job',
+									'在宅ワーク'       => 'Work from home',
+								);
 
-									if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
-										foreach ( $categories as $category ) {
-											if ( 'uncategorized' === $category->slug ) {
-												continue;
-											}
-
-											$url     = get_category_link( $category->term_id );
-											$ja_name = $category->name;
-
-											if ( isset( $en_names_map[ $category->name ] ) ) {
-												$en_name = $en_names_map[ $category->name ];
-											} elseif ( isset( $en_names_map[ $category->slug ] ) ) {
-												$en_name = $en_names_map[ $category->slug ];
-											} elseif ( ! empty( $category->description ) && mb_strlen( $category->description ) < 30 ) {
-												$en_name = $category->description;
-											} else {
-												$en_name = ucwords( str_replace( '-', ' ', $category->slug ) );
-											}
-
-											echo '<li>';
-											echo '<a href="' . esc_url( $url ) . '">';
-											echo '<span class="nav-link__ja">' . esc_html( $ja_name ) . '</span>';
-											echo '<span class="nav-link__en">' . esc_html( $en_name ) . '</span>';
-											echo '</a>';
-											echo '</li>';
+								if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
+									foreach ( $categories as $category ) {
+										if ( 'uncategorized' === $category->slug || '未分類' === $category->name ) {
+											continue;
 										}
+
+										$url     = get_category_link( $category->term_id );
+										$ja_name = $category->name;
+
+										if ( isset( $en_names_map[ $category->name ] ) ) {
+											$en_name = $en_names_map[ $category->name ];
+										} elseif ( isset( $en_names_map[ $category->slug ] ) ) {
+											$en_name = $en_names_map[ $category->slug ];
+										} elseif ( ! empty( $category->description ) && mb_strlen( $category->description ) < 30 ) {
+											$en_name = $category->description;
+										} else {
+											$en_name = ucwords( str_replace( '-', ' ', $category->slug ) );
+										}
+
+										echo '<li>';
+										echo '<a href="' . esc_url( $url ) . '">';
+										echo '<span class="nav-link__ja">' . esc_html( $ja_name ) . '</span>';
+										echo '<span class="nav-link__en">' . esc_html( $en_name ) . '</span>';
+										echo '</a>';
+										echo '</li>';
 									}
-									?>
-								</ul>
-								<?php
-							}
-							?>
+								}
+								?>
+							</ul>
 						</nav>
 					</div>
 				</div>
