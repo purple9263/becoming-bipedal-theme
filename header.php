@@ -89,10 +89,48 @@ ChatGPT活用、AI副業、ブログ運営、制作まわりの試行錯誤を�
 							} else {
 								?>
 								<ul class="primary-navigation__list">
-									<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>category/build-in-public/"><span class="nav-link__ja">学習記録</span><span class="nav-link__en">Build in Public</span></a></li>
-									<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>category/ai-web-creation/"><span class="nav-link__ja">AIサイト制作</span><span class="nav-link__en">AI Web Creation</span></a></li>
-									<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>category/work/"><span class="nav-link__ja">働き方</span><span class="nav-link__en">Work</span></a></li>
-									<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>category/side-notes/"><span class="nav-link__ja">雑記</span><span class="nav-link__en">Side Notes</span></a></li>
+									<?php
+									$categories = get_categories(
+										array(
+											'orderby'    => 'name',
+											'order'      => 'ASC',
+											'hide_empty' => true,
+										)
+									);
+
+									$en_names_map = array(
+										'build-in-public'  => 'Build in Public',
+										'ai-web-creation'  => 'AI Web Creation',
+										'work'             => 'Work',
+										'side-notes'       => 'Side Notes',
+									);
+
+									if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
+										foreach ( $categories as $category ) {
+											if ( 'uncategorized' === $category->slug ) {
+												continue;
+											}
+
+											$url     = get_category_link( $category->term_id );
+											$ja_name = $category->name;
+
+											if ( isset( $en_names_map[ $category->slug ] ) ) {
+												$en_name = $en_names_map[ $category->slug ];
+											} elseif ( ! empty( $category->description ) && mb_strlen( $category->description ) < 30 ) {
+												$en_name = $category->description;
+											} else {
+												$en_name = ucwords( str_replace( '-', ' ', $category->slug ) );
+											}
+
+											echo '<li>';
+											echo '<a href="' . esc_url( $url ) . '">';
+											echo '<span class="nav-link__ja">' . esc_html( $ja_name ) . '</span>';
+											echo '<span class="nav-link__en">' . esc_html( $en_name ) . '</span>';
+											echo '</a>';
+											echo '</li>';
+										}
+									}
+									?>
 								</ul>
 								<?php
 							}
